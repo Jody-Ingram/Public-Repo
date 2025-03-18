@@ -1,5 +1,5 @@
 <#
-Script  :  Windows-Assembly MissingFixKB5029247.ps1
+Script  :  Windows-Assembly-MissingFixKB5029247.ps1
 Version :  1.0
 Date    :  9/11/2024
 Author: Microsoft
