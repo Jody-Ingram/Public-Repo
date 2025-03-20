@@ -37,7 +37,7 @@ Try {
 }
 
 # Prompt for the user's email address
-$userEmail = Read-Host "Enter the email of the user:" # This is the user who will receive an email with instructions on enabling the Windows Hello authentication methods.
+$userEmail = Read-Host "Enter the email of the user" # This is the user who will receive an email with instructions on enabling the Windows Hello authentication methods.
 
 # Send notification email
 Try {
