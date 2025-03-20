@@ -32,7 +32,7 @@ Try {
     Start-Process -FilePath $psexecPath -ArgumentList "\\$deviceName -s cmd /C echo N | gpupdate /force" -NoNewWindow -Wait
     Write-Host "Group Policy updated on $deviceName" -ForegroundColor Green
 } Catch {
-    Write-Host "Failed to update Group Policy on $deviceName: $_" -ForegroundColor Red
+    Write-Host "Failed to update Group Policy on $deviceName`: $($_.Exception.Message)" -ForegroundColor Red
     exit
 }
 
