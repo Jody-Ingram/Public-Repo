@@ -1,8 +1,8 @@
 /* Azure-Communication-Services.bicep
-// Version: 1.0.0
-// Date: 4/4/2025
-// Author: Jody Ingram
-// Pre-reqs: Contributor Access to valid Azure subscription
+Version: 1.0.0
+Date: 4/4/2025
+Author: Jody Ingram
+Pre-reqs: Contributor Access to valid Azure subscription
 Notes: This is a Bicep template that will be used to deploy Azure Communication Services. ACS can be used to extend email relay beyond the 10K limit, as well as extend PSTNs, etc. */
 
 
