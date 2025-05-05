@@ -34,7 +34,7 @@ $body = @"
 <html>
 <body style="font-family: Calibri, sans-serif;">
   <div style="background-color: #f2f2f2; padding: 20px;">
-    <h2 style="color: #333;">New Wellstar Azure Subscription Created</h2>
+    <h2 style="color: #333;">New Azure Subscription Created</h2>
   </div>
 
   <div style="padding: 20px;">
