@@ -74,7 +74,7 @@ $body = @"
 # CC Recipients
 $ccRecipients = "person1@company.com, person2@company.com"
 
-Send-MailMessage -To $recipientEmail -CC $ccRecipients -Subject "New Company Azure Subscription Creation" -Body $body -BodyAsHtml -SmtpServer smtp.company.com -From "CloudTeam@company.com"
+Send-MailMessage -To $recipientEmail -CC $ccRecipients -Subject "New Azure Subscription Creation" -Body $body -BodyAsHtml -SmtpServer smtp.company.com -From "CloudTeam@company.com"
 
 # Test to single person. Uncomment to use.
 #Send-MailMessage -To jody@company.com -Subject "New Company Azure Subscription Creation" -Body $body -BodyAsHtml -SmtpServer smtp.company.com -From "CloudTeam@company.com"
