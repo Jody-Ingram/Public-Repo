@@ -4,7 +4,7 @@ Version :  1.2
 Date    :  5/2/2025
 Author  :  Jody Ingram
 Notes   :  Checks local ISP DNS against several open free DNS servers to determine the fastest connection. Includes GUI and CLI toggle.
-Updated :  5/5/2025 - Added 
+Updated :  5/5/2025 - Added patch to exit terminal once GUI is launched
 
 INSTRUCTIONS:
 -------------
