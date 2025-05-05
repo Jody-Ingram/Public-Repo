@@ -9,7 +9,8 @@ Updated :  5/5/2025 - Added patch to exit terminal once GUI is launched
 INSTRUCTIONS:
 -------------
 Run with GUI Enabled:    Run this script as-is to activate the GUI.
-Run in CLI Mode (No GUI):         Run this script with -NoGUI flag. Example: .\Windows-Find-Fastest-DNS.ps1 -NoGUI
+
+Run in CLI Mode (No GUI):    Run this script with -NoGUI flag. Example: .\Windows-Find-Fastest-DNS.ps1 -NoGUI
 #>
 
 param (
@@ -18,7 +19,7 @@ param (
 
 $useGUI = -not $NoGUI
 
-# Define DNS server list
+# Defines a list of the most widely known, free public DNS servers
 $dnsList = @(
     @{ Name = "Google DNS (8.8.8.8)"; IP = "8.8.8.8" },
     @{ Name = "Cloudflare (1.1.1.1)"; IP = "1.1.1.1" },
@@ -36,7 +37,7 @@ $currentDNS.ServerAddresses | Select-Object -Unique | ForEach-Object {
     $dnsList += @{ Name = "Current DNS ($_)"; IP = "$_" }
 }
 
-# Latency test function
+# Creates the latency tester function
 function Test-DNSLatency {
     param (
         [string]$IPAddress
@@ -48,7 +49,7 @@ function Test-DNSLatency {
         return $null
     }
 }
-# Runs the GUI by default.
+# Runs the GUI by default
 if ($useGUI) {
     try {
         Add-Type -AssemblyName System.Windows.Forms
@@ -73,7 +74,7 @@ if ($useGUI) {
         $grid.AllowUserToDeleteRows = $false
         $grid.SelectionMode = 'FullRowSelect'
         $form.Controls.Add($grid)
-# OnClick event
+# Initiates the OnClick event from the button
         $button.Add_Click({
             $grid.Columns.Clear()
             $grid.Rows.Clear()
