@@ -26,7 +26,7 @@ $nsgName2 = "NSG-NAME-2"
 # Set-AzContext SubscriptionName "OTHER_SUBSCRIPTION_NAME"
 
 
-# Defines the normalized rules so the script only looks at the data it needs to compare. In this case, the IP rules take priority
+# Defines the normalized rules so the script only looks at the data it needs to compare; excludes default NSG rules
 function Get-NormalizedRules {
     param (
         [string]$resourceGroup,
