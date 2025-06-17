@@ -1,0 +1,278 @@
+<!-- Windows 11 VDI Test Form by Jody Ingram -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Windows 11 VDI Image Testing</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    h2 { border-bottom: 2px solid #444; padding-bottom: 0.2rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    th, td { border: 1px solid #aaa; padding: 0.5rem; text-align: left; }
+    th { background: #eee; }
+    .checkbox { text-align: center; }
+    .notes { width: 40%; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Windows 11 VDI Image Testing</h1>
+
+  <form id="vdiForm">
+    <fieldset>
+      <legend><strong>Tester Information</strong></legend>
+      <p>
+        <label>Tester Name: <input type="text" name="Tester Name" size="30" /></label><br/>
+        <label>Date: <input type="date" name="Date" /></label><br/>
+        <label>VDI Image Version: <input type="text" name="VDI Image Version" size="20" /></label><br/>
+        <label>Location (if relevant): <input type="text" name="Location" size="30" /></label>
+      </p>
+    </fieldset>
+
+    <!-- General Functionality -->
+    <h2>General Functionality</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Login Experience</td>
+          <td>Verify login is smooth and profile loads correctly</td>
+          <td class="checkbox"><input type="checkbox" name="Login Experience - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Login Experience - Fail" /></td>
+          <td><input type="text" name="Login Experience - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Desktop Load Time</td>
+          <td>Time from login to usable desktop</td>
+          <td class="checkbox"><input type="checkbox" name="Desktop Load Time - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Desktop Load Time - Fail" /></td>
+          <td><input type="text" name="Desktop Load Time - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Start Menu &amp; Search</td>
+          <td>Ensure Start menu opens and search works</td>
+          <td class="checkbox"><input type="checkbox" name="Start Menu & Search - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Start Menu & Search - Fail" /></td>
+          <td><input type="text" name="Start Menu & Search - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Taskbar Functionality</td>
+          <td>Check pinned apps, system tray, and clock</td>
+          <td class="checkbox"><input type="checkbox" name="Taskbar Functionality - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Taskbar Functionality - Fail" /></td>
+          <td><input type="text" name="Taskbar Functionality - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Communication & Collaboration -->
+    <h2>Communication &amp; Collaboration</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Microsoft Teams</td>
+          <td>Launch, sign in, chat, and join a call</td>
+          <td class="checkbox"><input type="checkbox" name="Microsoft Teams - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Microsoft Teams - Fail" /></td>
+          <td><input type="text" name="Microsoft Teams - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Teams Audio/Video</td>
+          <td>Test microphone, speakers, and webcam in a call</td>
+          <td class="checkbox"><input type="checkbox" name="Teams AudioVideo - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Teams AudioVideo - Fail" /></td>
+          <td><input type="text" name="Teams AudioVideo - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Outlook</td>
+          <td>Open, send/receive emails, calendar sync</td>
+          <td class="checkbox"><input type="checkbox" name="Outlook - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Outlook - Fail" /></td>
+          <td><input type="text" name="Outlook - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Citrix Apps</td>
+          <td>Test launching Citrix Virtual Apps either through icons or Citrix Workspace App</td>
+          <td class="checkbox"><input type="checkbox" name="Outlook - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Outlook - Fail" /></td>
+          <td><input type="text" name="Outlook - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Peripheral & Device Integration -->
+    <h2>Peripheral &amp; Device Integration</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Printing</td>
+          <td>Send a test print to a local or network printer</td>
+          <td class="checkbox"><input type="checkbox" name="Printing - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Printing - Fail" /></td>
+          <td><input type="text" name="Printing - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Scanning</td>
+          <td>Test scanner access if applicable</td>
+          <td class="checkbox"><input type="checkbox" name="Scanning - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Scanning - Fail" /></td>
+          <td><input type="text" name="Scanning - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>USB Device Redirection</td>
+          <td>Plug in USB drive and access it in VDI</td>
+          <td class="checkbox"><input type="checkbox" name="USB Device Redirection - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="USB Device Redirection - Fail" /></td>
+          <td><input type="text" name="USB Device Redirection - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Network & Access -->
+    <h2>Network &amp; Access</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Internet Access</td>
+          <td>Open browser and navigate to a few safe websites</td>
+          <td class="checkbox"><input type="checkbox" name="Internet Access - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Internet Access - Fail" /></td>
+          <td><input type="text" name="Internet Access - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Internal Resources</td>
+          <td>Access the intranet, shared network drives, and Web Links</td>
+          <td class="checkbox"><input type="checkbox" name="Internal Resources - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Internal Resources - Fail" /></td>
+          <td><input type="text" name="Internal Resources - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>SSO (Single Sign In)</td>
+          <td>Test SSO works by going to Office.com/launch and verifying it does not prompt for a password.</td>
+          <td class="checkbox"><input type="checkbox" name="VPN - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="VPN - Fail" /></td>
+          <td><input type="text" name="VPN - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Applications & Performance -->
+    <h2>Applications &amp; Performance</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Core Applications</td>
+          <td>Test Microsoft Word, Excel, PowerPoint, PDF Reader, etc.</td>
+          <td class="checkbox"><input type="checkbox" name="Core Apps - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Core Apps - Fail" /></td>
+          <td><input type="text" name="Core Apps - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Medical Applications</td> 
+          <td>Launch and test any medical applications.</td>
+          <td class="checkbox"><input type="checkbox" name="LOB Apps - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="LOB Apps - Fail" /></td>
+          <td><input type="text" name="LOB Apps - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Performance</td>
+          <td>Check the overall performance; report any lag, freezing, etc.</td>
+          <td class="checkbox"><input type="checkbox" name="Performance - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Performance - Fail" /></td>
+          <td><input type="text" name="Performance - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- User Experience & Cleanup -->
+    <h2>User Experience &amp; Cleanup</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Item</th>
+          <th>Description</th>
+          <th class="checkbox">Pass</th>
+          <th class="checkbox">Fail</th>
+          <th class="notes">Notes / Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Profile Persistence</td>
+          <td>Log out and back in; all files and settings should remain</td> <!-- Adjust if this is on a non-persistent image -->
+          <td class="checkbox"><input type="checkbox" name="Profile Persistence - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Profile Persistence - Fail" /></td>
+          <td><input type="text" name="Profile Persistence - Notes" size="40" /></td>
+        </tr>
+        <tr>
+          <td>Logoff/Reboot</td>
+          <td>Test logoff and reboot behavior</td>
+          <td class="checkbox"><input type="checkbox" name="Logoff Reboot - Pass" /></td>
+          <td class="checkbox"><input type="checkbox" name="Logoff Reboot - Fail" /></td>
+          <td><input type="text" name="Logoff Reboot - Notes" size="40" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" onclick="sendByMailto()">Submit Results</button>
+  </form>
+
+  <script>
+    function sendByMailto() {
+      const form = document.getElementById('vdiForm');
+      const data = new FormData(form);
+      let body = '';
+      for (let [key, val] of data.entries()) {
+        body += `${encodeURIComponent(key)}: ${encodeURIComponent(val)}%0D%0A`;
+      }
+      // Edit the below mailto address and subject as needed
+      const mailto = `mailto:VDITeam@company.com?subject=VDI%20Test%20Results&body=${body}`;
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
