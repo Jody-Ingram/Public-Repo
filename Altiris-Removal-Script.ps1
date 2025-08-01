@@ -1,5 +1,5 @@
 <#
-Script  :  Altiris-Uninstall-Script.ps1
+Script  :  Altiris-Removal-Script.ps1
 Version :  1.0
 Date    :  7/30/25
 Author: Jody Ingram
