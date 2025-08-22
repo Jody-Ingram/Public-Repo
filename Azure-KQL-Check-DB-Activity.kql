@@ -1,0 +1,10 @@
+// Query Name: Azure-KQL-Check-DB-Activity.kql
+// Notes: Queries Azure Logs to output database activity per row over 30 days
+// Jody Ingram
+
+let window = 30d;
+AzureDiagnostics
+| where TimeGenerated >= ago(window)
+| where ResourceProvider has "MICROSOFT.SQL"
+| summarize rows=count() by Category
+| order by rows desc
