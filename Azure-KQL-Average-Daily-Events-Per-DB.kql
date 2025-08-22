@@ -1,0 +1,22 @@
+// Query Name: Azure-KQL-Average-Daily-Events-Per-DB.kql
+// Notes: Queries Azure Logs to determine the average events per database per day (ranked)
+// Jody Ingram
+
+let window = 30d;
+let grain = 1d;
+// Lists the database name you can pull additional data from
+AzureDiagnostics
+| where TimeGenerated >= ago(window)
+| where ResourceProvider has_cs "MICROSOFT.SQL"
+| extend db = coalesce(
+    database_name_s,
+    DatabaseName_s,
+    // If the event is at the DB resource, extract name from ResourceId
+    extract(@"providers/Microsoft\.Sql/servers/[^/]+/databases/([^/]+)", 1, ResourceId),
+    // Fallback to Resource (often the db name for Azure SQL)
+    tostring(Resource)
+)
+| where isnotempty(db)
+| summarize daily_count = count() by db, day = bin(TimeGenerated, grain)
+| summarize avg_daily_events = avg(daily_count), min_daily = min(daily_count), max_daily = max(daily_count) by db
+| order by avg_daily_events desc
