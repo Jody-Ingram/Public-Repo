@@ -1,0 +1,17 @@
+// Query Name: Azure-Average-Events-Per-Database.kql
+// Notes: Queries Azure Logs to determine the average events per database over 30 days
+// Jody Ingram
+
+let window = 30d;
+AzureDiagnostics
+| where TimeGenerated >= ago(window)
+| where ResourceProvider has_cs "MICROSOFT.SQL"
+| extend db = coalesce(
+    database_name_s,
+    DatabaseName_s,
+    extract(@"providers/Microsoft\.Sql/servers/[^/]+/databases/([^/]+)", 1, ResourceId),
+    tostring(Resource)
+)
+| where isnotempty(db)
+| summarize total_events = count() by db
+| summarize avg_events_per_db_for_window = avg(total_events), db_count = dcount(db)
