@@ -8,7 +8,7 @@ Notes:
 #>
 
 # Connects to Azure; prompts for authentication account
-Connect-AzAccount
+Connect-AzAccount -Tenant "<your-tenant-id>" | Out-Null
 
 # Subscription Names
 $SubscriptionNames = @(
