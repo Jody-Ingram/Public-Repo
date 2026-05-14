@@ -156,7 +156,7 @@ if ($staleServers.Count -eq 0) {
 
 Write-Output "Found $($staleServers.Count) stale Azure Arc server resource(s)."
 
-# Always output findings before any deletion to allow review, especially when Delete mode is enabled. Can be removed or commented later out if not needed.
+# Always output findings before any deletion to allow review, especially when Delete mode is enabled. Can be removed or commented out later if not needed.
 Write-Output "Stale Arc server candidates:"
 foreach ($server in $staleServers) {
     Write-Output "Name: $($server.name) | Subscription: $($server.subscriptionId) | RG: $($server.resourceGroup) | Location: $($server.location) | LastStatusChange: $($server.lastStatusChange)"
