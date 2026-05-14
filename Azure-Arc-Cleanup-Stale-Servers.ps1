@@ -1,7 +1,7 @@
 <#
 Script  : Azure-Arc-Cleanup-Stale-Servers.ps1
 Version : 1.2
-Date    : 2026-05-14
+Date    : 05-14-2026
 Author  : Jody Ingram
 
 Pre-reqs:
