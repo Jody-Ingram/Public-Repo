@@ -1,0 +1,10 @@
+// Query Name: Azure-KQL-Expired-Security-Certificates.kql
+// Notes: Queries expired security certificates in Azure.
+// Jody Ingram
+
+resources
+| where type == 'microsoft.web/certificates'
+| extend expiresOn = todatetime(properties.expirationDate)
+| where expiresOn <= now()
+| extend Details = pack_all()
+| project subscriptionId, Resource=id, resourceGroup, location, Details
