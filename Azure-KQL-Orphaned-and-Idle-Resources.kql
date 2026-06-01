@@ -1,0 +1,44 @@
+// Query Name: Azure-KQL-Orphaned-and-Idle-Resources.kql
+// Notes: Queries abandoned and idle resources in Azure, including specific Tags.
+// Jody Ingram
+
+Resources
+| extend resourceType = tolower(type)
+| extend Owner = iff(isempty(tostring(tags["Owner"])), "Untagged", tostring(tags["Owner"]))
+| extend Application = iff(isempty(tostring(tags["Application"])), "Untagged", tostring(tags["Application"]))
+| extend Environment = iff(isempty(tostring(tags["Environment"])), "Untagged", tostring(tags["Environment"]))
+| extend Environment = iff(isempty(tostring(tags["Environment"])), "Untagged", tostring(tags["Owner"]))
+| extend appServicePlanSiteCount = toint(properties.numberOfSites)
+| extend nicCount = array_length(properties.networkInterfaces)
+| extend subnetCount = array_length(properties.subnets)
+| extend vmCount = array_length(properties.virtualMachines)
+| extend Finding = case(
+    resourceType == "microsoft.compute/disks" and isempty(tostring(managedBy)), "Unattached managed disk",
+    resourceType == "microsoft.network/publicipaddresses" and isempty(tostring(properties.ipConfiguration.id)), "Unassociated public IP",
+    resourceType == "microsoft.network/networkinterfaces" and isempty(tostring(properties.virtualMachine.id)) and isempty(tostring(properties.privateEndpoint.id)), "Unattached NIC",
+    resourceType == "microsoft.web/serverfarms" and appServicePlanSiteCount == 0, "Empty App Service Plan",
+    resourceType == "microsoft.network/networksecuritygroups" and (isnull(nicCount) or nicCount == 0) and (isnull(subnetCount) or subnetCount == 0), "Unassociated NSG",
+    resourceType == "microsoft.network/routetables" and (isnull(subnetCount) or subnetCount == 0), "Unassociated route table",
+    resourceType == "microsoft.network/natgateways" and (isnull(subnetCount) or subnetCount == 0), "NAT Gateway not associated to subnet",
+    resourceType == "microsoft.compute/availabilitysets" and (isnull(vmCount) or vmCount == 0), "Empty availability set",
+    ""
+)
+| where isnotempty(Finding)
+| extend Severity = case(
+    Finding in ("Unattached managed disk", "Unassociated public IP", "Empty App Service Plan", "NAT Gateway not associated to subnet"), "High",
+    Finding == "Unattached NIC", "Medium",
+    "Low"
+)
+| project
+    subscriptionId,
+    resourceGroup,
+    name,
+    resourceType,
+    location,
+    Finding,
+    Severity,
+    Owner,
+    Application,
+    Environment,
+    resourceId = id
+| order by subscriptionId asc, Severity asc, Finding asc, resourceGroup asc, name asc
