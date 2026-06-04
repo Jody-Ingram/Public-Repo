@@ -11,7 +11,7 @@ It is not intended to alert for every normal user disconnect.
 Typical troubleshooting path:
 
 ```text
-User/Vendor -> CyberArk PSM -> Target Windows Server / Azure VM
+User/Vendor -> RDP Server -> Target Windows Server / Azure VM
 ```
 
 ## Production Alert Trigger
@@ -49,34 +49,28 @@ Normal disconnects can still sometimes show TCP read/write errors. During testin
 ```text
 Alert when:
 - RdpCoreTS 142, 143, or 226 occurs
-- AND the source IP matches a known CyberArk PSM server
+- AND the source IP matches a known RDP server
 - AND the nearby disconnect reason does not look like a normal clean disconnect
 ```
 
 Do not assume CyberArk Error 4 is the same as Windows Event Viewer reason code 4. For this alert, trust the Windows RDP transport events.
 
-## Known CyberArk PSM Source IPs
+## Known RDP Source IPs
 
-Update this list if the PSM servers change.
+Update this to include a list of Source IPs you are connecting FROM
 
 ```text
-10.246.130.156
-10.246.130.158
-10.246.131.147
-10.246.131.148
-10.246.144.178
-10.246.144.179
-10.246.145.22
-10.246.145.23
+127.0.0.1
 ```
 
 ## Recommended Paths
 
 ```text
-C:\ProgramData\RDPDisconnectMonitor
-C:\ProgramData\RDPDisconnectMonitor\Send-BadRdpAlert.ps1
-C:\ProgramData\RDPDisconnectMonitor\RdpDisconnectAlert.log
-C:\ProgramData\RDPDisconnectMonitor\last-alert.txt
+C:\Tools\RDPDisconnectMonitor
+C:\Tools\RDPDisconnectMonitorWindows-Alert-Send-RDP-Disconnect.ps1
+C:\Tools\RDPDisconnectMonitor\Windows-Task-Create-RDP-Disconnect-Alert.ps1
+C:\Tools\RDPDisconnectMonitor\Windows-Trigger-RDP-Hard-Disconnect.ps1
+C:\Tools\RDPDisconnectMonitor\Windows-SMTP-Test.ps1
 ```
 
 ## Installation Steps
@@ -84,21 +78,21 @@ C:\ProgramData\RDPDisconnectMonitor\last-alert.txt
 Create the folder:
 
 ```powershell
-New-Item -ItemType Directory -Path C:\ProgramData\RDPDisconnectMonitor -Force
+New-Item -ItemType Directory -Path C:\Tools\RDPDisconnectMonitor -Force
 ```
 
 Save the PowerShell alert script here:
 
 ```text
-C:\ProgramData\RDPDisconnectMonitor\Send-BadRdpAlert.ps1
+C:\Tools\RDPDisconnectMonitorWindows-Alert-Send-RDP-Disconnect.ps1
 ```
 
 Update the SMTP values in the script:
 
 ```powershell
-$SmtpServer = 'smtp.yourdomain.org'
-$From       = 'RDPAlert@yourdomain.org'
-$To         = 'you@yourdomain.org'
+$SmtpServer = 'smtp.company.org'
+$From       = 'RDPAlert@company.org'
+$To         = 'jodyingram@company.org'
 ```
 
 Create a Scheduled Task that runs the script when RdpCoreTS Event ID 142, 143, or 226 occurs.
@@ -112,13 +106,13 @@ Confirm the task account can read Event Logs, run PowerShell, and send through t
 Use TestMode so the script sends even if there is no recent bad RDP event:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\ProgramData\RDPDisconnectMonitor\Send-BadRdpAlert.ps1 -TestMode -LookBackMinutes 60
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Tools\RDPDisconnectMonitorWindows-Alert-Send-RDP-Disconnect.ps1 -TestMode -LookBackMinutes 60
 ```
 
 Then check the log:
 
 ```powershell
-notepad C:\ProgramData\RDPDisconnectMonitor\RdpDisconnectAlert.log
+notepad C:\Tools\RDPDisconnectMonitor\RdpDisconnectAlert.log
 ```
 
 ### Test a normal disconnect
@@ -242,7 +236,7 @@ User/account
 Target VM
 Target VM private IP
 Timestamp
-CyberArk PSM server/IP
+Server/IP
 Target VM RDP logs
 Palo/session logs
 Packet capture if available
@@ -261,7 +255,7 @@ Get-WinEvent -FilterHashtable @{
 Useful Palo/security correlation:
 
 ```text
-Source:      PSM server IP
+Source:      RDP Server IP
 Destination: Target VM private IP
 Port:        3389
 Protocol:    TCP and UDP
@@ -283,7 +277,7 @@ session timeout
 
 ## Current Working Theory
 
-The issue appears to be an intermittent RDP transport/session-state problem between CyberArk PSM servers and Azure target VMs.
+The issue appears to be an intermittent RDP transport/session-state problem between RDP servers and Azure target VMs.
 
 The Windows events suggest the RDP transport breaks first, then the session disconnects.
 
