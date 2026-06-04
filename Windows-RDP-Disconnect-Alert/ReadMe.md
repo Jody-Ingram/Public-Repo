@@ -211,16 +211,16 @@ notepad C:\ProgramData\RDPDisconnectMonitor\RdpDisconnectAlert.log
 Confirm SMTP connectivity:
 
 ```powershell
-Test-NetConnection smtp.yourdomain.org -Port 25
+Test-NetConnection smtp.company.org -Port 25
 ```
 
 Test basic SMTP send:
 
 ```powershell
 Send-MailMessage `
-  -SmtpServer 'smtp.yourdomain.org' `
-  -From 'RDPAlert@yourdomain.org' `
-  -To 'you@yourdomain.org' `
+  -SmtpServer 'smtp.company.org' `
+  -From 'RDPAlert@company.org' `
+  -To 'you@company.org' `
   -Subject "SMTP test from $env:COMPUTERNAME" `
   -Body "Test email"
 ```
@@ -274,14 +274,6 @@ threat reset
 asymmetric flow
 session timeout
 ```
-
-## Current Working Theory
-
-The issue appears to be an intermittent RDP transport/session-state problem between RDP servers and Azure target VMs.
-
-The Windows events suggest the RDP transport breaks first, then the session disconnects.
-
-Palo/security logs showing `allow` plus `tcp-rst-from-client`, `tcp-rst-from-server`, or `aged-out` support a network/RDP transport investigation, but do not by themselves prove Palo is the root cause.
 
 ## Recommended Production Trigger
 
