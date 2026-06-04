@@ -67,7 +67,7 @@ Update this to include a list of Source IPs you are connecting FROM
 
 ```text
 C:\Tools\RDPDisconnectMonitor
-C:\Tools\RDPDisconnectMonitorWindows-Alert-Send-RDP-Disconnect.ps1
+C:\Tools\RDPDisconnectMonitor\Windows-Alert-Send-RDP-Disconnect.ps1
 C:\Tools\RDPDisconnectMonitor\Windows-Task-Create-RDP-Disconnect-Alert.ps1
 C:\Tools\RDPDisconnectMonitor\Windows-Trigger-RDP-Hard-Disconnect.ps1
 C:\Tools\RDPDisconnectMonitor\Windows-SMTP-Test.ps1
@@ -199,13 +199,13 @@ Security 4647
 Run the script in TestMode:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\ProgramData\RDPDisconnectMonitor\Send-BadRdpAlert.ps1 -TestMode -LookBackMinutes 60
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Tools\RDPDisconnectMonitor\Windows-Alert-Send-RDP-Disconnect.ps1 -TestMode -LookBackMinutes 60
 ```
 
 Check the script log:
 
 ```powershell
-notepad C:\ProgramData\RDPDisconnectMonitor\RdpDisconnectAlert.log
+notepad C:\Tools\RDPDisconnectMonitor\RdpDisconnectAlert.log
 ```
 
 Confirm SMTP connectivity:
@@ -220,7 +220,7 @@ Test basic SMTP send:
 Send-MailMessage `
   -SmtpServer 'smtp.company.org' `
   -From 'RDPAlert@company.org' `
-  -To 'you@company.org' `
+  -To 'jodyingram@company.org' `
   -Subject "SMTP test from $env:COMPUTERNAME" `
   -Body "Test email"
 ```
