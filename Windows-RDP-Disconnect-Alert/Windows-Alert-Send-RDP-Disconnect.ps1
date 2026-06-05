@@ -20,7 +20,7 @@ $StartTime = (Get-Date).AddMinutes(-$LookBackMinutes)
 $Computer = $env:COMPUTERNAME
 
 # Output directory and file for tracking last alert time to prevent spamming
-$OutDir = 'C:\ProgramData\RDPDisconnectMonitor'
+$OutDir = 'C:\Tools\RDPDisconnectMonitor'
 $StateFile = Join-Path $OutDir 'last-alert.txt'
 
 # Simple anti-spam/cooldown: do not send more than once every 2 minutes
