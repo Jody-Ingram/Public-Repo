@@ -3,7 +3,7 @@ Script  :  Azure-LAW-Table-Property-Search.ps1
 Version :  1.0
 Date    :  6/19/2026
 Author  :  Jody Ingram
-Purpose :  Searches Azure Log Analytics Workspace tables for specific properties. Change the tablSubType value in script to search for different properties.
+Purpose :  Searches Azure Log Analytics Workspace tables for specific properties. Change the tableSubType value in script to search for different properties.
 #>
 
 $Results = foreach ($Sub in Get-AzSubscription) {
