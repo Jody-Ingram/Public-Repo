@@ -2,6 +2,7 @@
 Script  :  AD-GetADObjectListfromOUandPings.ps1
 Version :  1.0
 Date    :  9/16/26
+Author: Jody Ingram
 Pre-reqs: N/A
 Notes: This script retrieves a list of Active Directory computer objects from a specified Organizational Unit (OU) and pings each computer to check its availability.
 #>
